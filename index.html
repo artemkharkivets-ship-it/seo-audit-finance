@@ -36,5 +36,34 @@
         <source srcset="image2.webp" type="image/webp">
         <img src="image2.jpg" alt="Контроль витрат" width="800" height="450" loading="lazy">
     </picture>
+    <!-- Скрипт для кастомних подій GA4 -->
+    <script>
+        // 1. Подія: клік по місії
+        document.querySelector('a[href="about.html"]').addEventListener('click', function() {
+            gtag('event', 'mission_link_click', { 'link_location': 'homepage_text' });
+        });
+
+        // 2. Подія: клік по порадах бюджету
+        document.querySelector('a[href="budget-tips.html"]').addEventListener('click', function() {
+            gtag('event', 'budget_tips_click', { 'link_location': 'homepage_text' });
+        });
+
+        // 3. Подія: клік по порадах для студентів
+        document.querySelector('a[href="finance-tips.html"]').addEventListener('click', function() {
+            gtag('event', 'student_tips_click', { 'link_location': 'homepage_text' });
+        });
+
+        // 4. Подія: клік по головному зображенню
+        document.querySelector('img[alt="Фінансове планування"]').addEventListener('click', function() {
+            gtag('event', 'hero_image_click', { 'image_type': 'hero' });
+        });
+
+        // 5. Подія: клік по зображеннях галереї
+        document.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
+            img.addEventListener('click', function() {
+                gtag('event', 'gallery_image_click', { 'image_alt': this.alt });
+            });
+        });
+    </script>
 </body>
 </html>
