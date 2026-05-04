@@ -71,6 +71,47 @@
                 gtag('event', 'gallery_image_click', { 'image_alt': this.alt });
             });
         });
-    </script>
+    </script
+        <script>
+  (function() {
+    // Визначаємо варіант A або B випадковим чином і зберігаємо чистим JS
+    var variant = localStorage.getItem('ab_test_variant');
+    if (!variant) {
+      variant = Math.random() < 0.5 ? 'A' : 'B';
+      localStorage.setItem('ab_test_variant', variant);
+    }
+
+    // Якщо випав варіант B - робимо з посилання кнопку
+    if (variant === 'B') {
+      // УВАГА: ЗАМІНІТЬ 'a.nav-link' НА ВАШ РЕАЛЬНИЙ КЛАС АБО ID ПОСИЛАННЯ
+      var link = document.querySelector('a.nav-link'); 
+      
+      if (link) {
+        link.style.display = 'inline-block';
+        link.style.backgroundColor = '#007bff';
+        link.style.color = '#ffffff';
+        link.style.textDecoration = 'none';
+        link.style.fontWeight = 'bold';
+        link.style.borderRadius = '5px';
+        link.style.textAlign = 'center';
+        link.style.boxSizing = 'border-box';
+        
+        // Робимо її помітною. Якщо в дизайні потрібен великий елемент, 
+        // можемо задати фіксовані розміри, наприклад 77x77 пікселів.
+        // Але для класичної кнопки залишимо стандартні відступи:
+        link.style.minWidth = '77px'; 
+        link.style.padding = '10px 20px';
+      }
+    }
+    
+    // Відправляємо подію в існуючий GA4
+    if (typeof gtag === 'function') {
+      gtag('event', 'ab_test_exposure', {
+        'test_name': 'nav_link_vs_button',
+        'variant': variant
+      });
+    }
+  })();
+</script>
 </body>
 </html>
