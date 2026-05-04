@@ -25,5 +25,49 @@
     <h1>Про наш фінансовий проєкт</h1>
     <p>Ми допомагаємо студентам та професіоналам ефективно розподіляти доходи.</p>
     <a href="index.html">Повернутися на головну</a>
+
+    <!-- Скрипт для ручного A/B тестування -->
+    <script>
+    (function() {
+        // Визначаємо варіант A або B випадковим чином
+        var variant = localStorage.getItem('ab_test_variant');
+        if (!variant) {
+            variant = Math.random() < 0.5 ? 'A' : 'B';
+            localStorage.setItem('ab_test_variant', variant);
+        }
+
+        // Якщо випав варіант B - перетворюємо посилання на кнопку
+        if (variant === 'B') {
+            // Знаходимо наше посилання за його href
+            var link = document.querySelector('a[href="index.html"]'); 
+            
+            if (link) {
+                // Стилізуємо посилання під кнопку
+                link.style.display = 'inline-flex';
+                link.style.alignItems = 'center';
+                link.style.justifyContent = 'center';
+                link.style.backgroundColor = '#007bff';
+                link.style.color = '#ffffff';
+                link.style.textDecoration = 'none';
+                link.style.fontWeight = 'bold';
+                link.style.borderRadius = '5px';
+                link.style.boxSizing = 'border-box';
+                
+                // Задаємо великі розміри для елемента інтерфейсу
+                link.style.minWidth = '77px';
+                link.style.minHeight = '77px';
+                link.style.padding = '0 20px'; 
+            }
+        }
+        
+        // Відправляємо подію в існуючий GA4 для аналізу результатів
+        if (typeof gtag === 'function') {
+            gtag('event', 'ab_test_exposure', {
+                'test_name': 'nav_link_vs_button',
+                'variant': variant
+            });
+        }
+    })();
+    </script>
 </body>
 </html>
