@@ -43,6 +43,7 @@
         <source srcset="image2.webp" type="image/webp">
         <img src="image2.jpg" alt="Контроль витрат" width="800" height="450" loading="lazy">
     </picture>
+
     <!-- Скрипт для кастомних подій GA4 -->
     <script>
         // 1. Подія: клік по місії
@@ -71,8 +72,10 @@
                 gtag('event', 'gallery_image_click', { 'image_alt': this.alt });
             });
         });
-    </script
-        <script>
+    </script>
+
+    <!-- Скрипт для A/B тестування (перетворює посилання budget-tips на кнопку) -->
+    <script>
   (function() {
     // Визначаємо варіант A або B випадковим чином і зберігаємо чистим JS
     var variant = localStorage.getItem('ab_test_variant');
@@ -83,8 +86,8 @@
 
     // Якщо випав варіант B - робимо з посилання кнопку
     if (variant === 'B') {
-      // УВАГА: ЗАМІНІТЬ 'a.nav-link' НА ВАШ РЕАЛЬНИЙ КЛАС АБО ID ПОСИЛАННЯ
-      var link = document.querySelector('a.nav-link'); 
+      // Шукаємо посилання за адресою href
+      var link = document.querySelector('a[href="budget-tips.html"]'); 
       
       if (link) {
         link.style.display = 'inline-block';
@@ -95,10 +98,10 @@
         link.style.borderRadius = '5px';
         link.style.textAlign = 'center';
         link.style.boxSizing = 'border-box';
+        // Робимо відступи від тексту, щоб кнопка не "прилипала" до слів
+        link.style.margin = '5px 10px';
         
-        // Робимо її помітною. Якщо в дизайні потрібен великий елемент, 
-        // можемо задати фіксовані розміри, наприклад 77x77 пікселів.
-        // Але для класичної кнопки залишимо стандартні відступи:
+        // Розміри
         link.style.minWidth = '77px'; 
         link.style.padding = '10px 20px';
       }
@@ -112,6 +115,6 @@
       });
     }
   })();
-</script>
+    </script>
 </body>
 </html>
