@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2SRK641MZY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2SRK641MZY');
-</script>
-    <meta charset="UTF-8">
-    <title>Про проєкт фінансової грамотності | Наша місія та цілі</title>
-    <meta name="description" content="Допомагаємо студентам та професіоналам здобути фінансову незалежність. Дізнайтеся більше про місію додатку та інструменти розподілу доходів. Долучайтеся!">
+    <script id="cookieyes" type="text/javascript"
+        src="https://cdn-cookieyes.com/client_data/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/script.js">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'analytics_storage':  'denied',
+            'ad_storage':         'denied',
+            'ad_user_data':       'denied',
+            'ad_personalization': 'denied',
+            'wait_for_update':    500
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2SRK641MZY"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-2SRK641MZY');
+    </script>
     <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wlvf7daogx");
-</script>
+    </script>
+    <meta charset="UTF-8">
+    <title>Про проєкт фінансової грамотності | Наша місія та цілі</title>
+    <meta name="description" content="Допомагаємо студентам та професіоналам здобути фінансову незалежність. Дізнайтеся більше про місію додатку та інструменти розподілу доходів. Долучайтеся!">
 </head>
 <body>
     <h1>Про наш фінансовий проєкт</h1>
     <p>Ми допомагаємо студентам та професіоналам ефективно розподіляти доходи.</p>
     <a href="index.html">Повернутися на головну</a>
 
-    <!-- Скрипт для ручного A/B тестування -->
     <script>
     (function() {
-        // Визначаємо варіант A або B випадковим чином
         var variant = localStorage.getItem('ab_test_variant');
         if (!variant) {
             variant = Math.random() < 0.5 ? 'A' : 'B';
             localStorage.setItem('ab_test_variant', variant);
         }
-
-        // Якщо випав варіант B - перетворюємо посилання на кнопку
         if (variant === 'B') {
-            // Знаходимо наше посилання за його href
-            var link = document.querySelector('a[href="index.html"]'); 
-            
+            var link = document.querySelector('a[href="index.html"]');
             if (link) {
-                // Стилізуємо посилання під кнопку
                 link.style.display = 'inline-flex';
                 link.style.alignItems = 'center';
                 link.style.justifyContent = 'center';
@@ -52,15 +55,11 @@
                 link.style.fontWeight = 'bold';
                 link.style.borderRadius = '5px';
                 link.style.boxSizing = 'border-box';
-                
-                // Задаємо великі розміри для елемента інтерфейсу
                 link.style.minWidth = '77px';
                 link.style.minHeight = '77px';
-                link.style.padding = '0 20px'; 
+                link.style.padding = '0 20px';
             }
         }
-        
-        // Відправляємо подію в існуючий GA4 для аналізу результатів
         if (typeof gtag === 'function') {
             gtag('event', 'ab_test_exposure', {
                 'test_name': 'nav_link_vs_button',

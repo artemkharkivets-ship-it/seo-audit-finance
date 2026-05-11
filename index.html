@@ -1,38 +1,68 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2SRK641MZY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- ============================================================
+         1. CookieYes CMP — має бути ПЕРШИМ скриптом у <head>
+         Замініть XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX на свій реальний
+         ключ із дашборду CookieYes (Settings -> Installation).
+    ============================================================ -->
+    <script id="cookieyes" type="text/javascript"
+        src="https://cdn-cookieyes.com/client_data/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/script.js">
+    </script>
 
-  gtag('config', 'G-2SRK641MZY');
-</script>
-    <meta charset="UTF-8">
-    <title>Облік особистих фінансів | Контроль бюджету онлайн</title>
-    <meta name="description" content="Навчіться ефективно управляти особистими фінансами та контролювати витрати. Прості інструменти для планування бюджету на кожен день. Почніть заощаджувати вже сьогодні!">
+    <!-- ============================================================
+         2. Consent Mode v2 — дефолтний стан "все заблоковано"
+         ОБОВ'ЯЗКОВО до завантаження gtag.js / GA4.
+    ============================================================ -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        gtag('consent', 'default', {
+            'analytics_storage':  'denied',
+            'ad_storage':         'denied',
+            'ad_user_data':       'denied',
+            'ad_personalization': 'denied',
+            'wait_for_update':    500
+        });
+    </script>
+
+    <!-- ============================================================
+         3. Google Analytics 4
+    ============================================================ -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2SRK641MZY"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-2SRK641MZY');
+    </script>
+
+    <!-- ============================================================
+         4. Microsoft Clarity
+    ============================================================ -->
     <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wlvf7daogx");
-</script>
+    </script>
+
+    <meta charset="UTF-8">
+    <title>Облік особистих фінансів | Контроль бюджету онлайн</title>
+    <meta name="description" content="Навчіться ефективно управляти особистими фінансами та контролювати витрати. Прості інструменти для планування бюджету на кожен день. Почніть заощаджувати вже сьогодні!">
 </head>
 <body>
     <h1>Ефективний контроль ваших фінансів</h1>
     <p>Вітаємо на сайті! Тут ви навчитеся контролювати свій бюджет та досягати фінансових цілей.</p>
-    
+
     <picture>
         <source srcset="hero.webp" type="image/webp">
         <img src="hero.jpg" alt="Фінансове планування" width="800" height="450">
     </picture>
-    
+
     <h2>Навігація та корисні матеріали</h2>
     <p>Для початку рекомендуємо дізнатися більше <a href="about.html">про нашу місію фінансової грамотності</a> та цілі проєкту. Якщо ви вже готові до практики, ми підготували для вас <a href="budget-tips.html">5 дієвих порад з економії бюджету</a>, які допоможуть зберегти гроші вже сьогодні. Також зверніть увагу на наші <a href="finance-tips.html">ексклюзивні фінансові поради для студентів</a> щодо розподілу стипендії.</p>
-    
+
     <h2>Галерея успіху</h2>
     <picture>
         <source srcset="image1.webp" type="image/webp">
@@ -44,29 +74,19 @@
         <img src="image2.jpg" alt="Контроль витрат" width="800" height="450" loading="lazy">
     </picture>
 
-    <!-- Скрипт для кастомних подій GA4 -->
     <script>
-        // 1. Подія: клік по місії
         document.querySelector('a[href="about.html"]').addEventListener('click', function() {
             gtag('event', 'mission_link_click', { 'link_location': 'homepage_text' });
         });
-
-        // 2. Подія: клік по порадах бюджету
         document.querySelector('a[href="budget-tips.html"]').addEventListener('click', function() {
             gtag('event', 'budget_tips_click', { 'link_location': 'homepage_text' });
         });
-
-        // 3. Подія: клік по порадах для студентів
         document.querySelector('a[href="finance-tips.html"]').addEventListener('click', function() {
             gtag('event', 'student_tips_click', { 'link_location': 'homepage_text' });
         });
-
-        // 4. Подія: клік по головному зображенню
         document.querySelector('img[alt="Фінансове планування"]').addEventListener('click', function() {
             gtag('event', 'hero_image_click', { 'image_type': 'hero' });
         });
-
-        // 5. Подія: клік по зображеннях галереї
         document.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
             img.addEventListener('click', function() {
                 gtag('event', 'gallery_image_click', { 'image_alt': this.alt });
@@ -74,47 +94,36 @@
         });
     </script>
 
-    <!-- Скрипт для A/B тестування (перетворює посилання budget-tips на кнопку) -->
     <script>
-  (function() {
-    // Визначаємо варіант A або B випадковим чином і зберігаємо чистим JS
-    var variant = localStorage.getItem('ab_test_variant');
-    if (!variant) {
-      variant = Math.random() < 0.5 ? 'A' : 'B';
-      localStorage.setItem('ab_test_variant', variant);
-    }
-
-    // Якщо випав варіант B - робимо з посилання кнопку
-    if (variant === 'B') {
-      // Шукаємо посилання за адресою href
-      var link = document.querySelector('a[href="budget-tips.html"]'); 
-      
-      if (link) {
-        link.style.display = 'inline-block';
-        link.style.backgroundColor = '#007bff';
-        link.style.color = '#ffffff';
-        link.style.textDecoration = 'none';
-        link.style.fontWeight = 'bold';
-        link.style.borderRadius = '5px';
-        link.style.textAlign = 'center';
-        link.style.boxSizing = 'border-box';
-        // Робимо відступи від тексту, щоб кнопка не "прилипала" до слів
-        link.style.margin = '5px 10px';
-        
-        // Розміри
-        link.style.minWidth = '77px'; 
-        link.style.padding = '10px 20px';
-      }
-    }
-    
-    // Відправляємо подію в існуючий GA4
-    if (typeof gtag === 'function') {
-      gtag('event', 'ab_test_exposure', {
-        'test_name': 'nav_link_vs_button',
-        'variant': variant
-      });
-    }
-  })();
+    (function() {
+        var variant = localStorage.getItem('ab_test_variant');
+        if (!variant) {
+            variant = Math.random() < 0.5 ? 'A' : 'B';
+            localStorage.setItem('ab_test_variant', variant);
+        }
+        if (variant === 'B') {
+            var link = document.querySelector('a[href="budget-tips.html"]');
+            if (link) {
+                link.style.display = 'inline-block';
+                link.style.backgroundColor = '#007bff';
+                link.style.color = '#ffffff';
+                link.style.textDecoration = 'none';
+                link.style.fontWeight = 'bold';
+                link.style.borderRadius = '5px';
+                link.style.textAlign = 'center';
+                link.style.boxSizing = 'border-box';
+                link.style.margin = '5px 10px';
+                link.style.minWidth = '77px';
+                link.style.padding = '10px 20px';
+            }
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', 'ab_test_exposure', {
+                'test_name': 'nav_link_vs_button',
+                'variant': variant
+            });
+        }
+    })();
     </script>
 </body>
 </html>
